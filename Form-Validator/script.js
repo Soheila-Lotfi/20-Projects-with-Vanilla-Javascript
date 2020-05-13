@@ -54,7 +54,7 @@ function checkEmail(input) {
     }
 }
 
-// passwords must be match
+// passwords must  match
 
 function checkPasswordMatch(input1, input2) {
     if (input1.value !== input2.value) {
@@ -77,10 +77,9 @@ function showError(input, message) {
 function showSuccess(input) {
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
-
-
 }
 
+// event listener
 
 
 form.addEventListener('submit', function (e) {
