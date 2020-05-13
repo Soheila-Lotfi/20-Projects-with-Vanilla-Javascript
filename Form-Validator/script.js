@@ -15,12 +15,15 @@ function checkRequired(inputArr) {
         if (!input.value) {
             showError(input, `${getFieldName(input)} is required`)
         }
+        else {
+            showSuccess(input)
+        }
     })
 }
 
 // get field name and make the first character uppercase
 function getFieldName(input) {
-    return input.id.charAt(0).toUpperCase() + input.slice(1);
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 
 }
 
@@ -31,8 +34,33 @@ function checkLength(input, min, max) {
         showError(input, `${getFieldName(input)} must be at least ${min} characters`)
     }
     else if (input.value.length > max) {
-        showError(input, `${getFieldName(input)} must be at least ${min} characters`)
+        showError(input, `${getFieldName(input)} must be less than ${max} characters`)
     }
+    else {
+        showSuccess(input);
+    }
+}
+
+//check email
+
+function checkEmail(input) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (re.test(input.value.trim())) {
+        showSuccess(input);
+    }
+    else {
+        showError(input, 'Email is not valid')
+    }
+}
+
+// passwords must be match
+
+function checkPasswordMatch(input1, input2) {
+    if (input1.value !== input2.value) {
+        showError(input2, 'Passwords do not match')
+    }
+
 }
 
 // show error message
@@ -44,6 +72,15 @@ function showError(input, message) {
     small.innerText = message;
 }
 
+// show success outline
+
+function showSuccess(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control success';
+
+
+}
+
 
 
 form.addEventListener('submit', function (e) {
@@ -52,6 +89,8 @@ form.addEventListener('submit', function (e) {
     checkRequired([userName, email, password, password2]);
     checkLength(userName, 3, 30);
     checkLength(password, 6, 20);
+    checkEmail(email);
+    checkPasswordMatch(password, password2);
 
 
 })
