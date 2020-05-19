@@ -5,7 +5,7 @@ const container = document.querySelector('.container');   // const container = d
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
-const ticketPrice = +movieSelect.value;                // the movieSelect.value is string, we use parseInt or + sign to convert string to number
+let ticketPrice = +movieSelect.value;                // the movieSelect.value is string, we use parseInt or + sign to convert string to number
 
 
 // update the count and total price
@@ -23,7 +23,8 @@ function updatedSelectedCount() {
 // event listener
 
 movieSelect.addEventListener('change', (e) => {
-
+    ticketPrice = +e.target.value;
+    updatedSelectedCount();
 })
 
 
