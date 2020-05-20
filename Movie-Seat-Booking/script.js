@@ -7,6 +7,8 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 let ticketPrice = +movieSelect.value;                // the movieSelect.value is string, we use parseInt or + sign to convert string to number
 
+/// get the data saved in local storage
+populateUi();
 
 // update the count and total price
 
@@ -15,8 +17,44 @@ function updatedSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected')
     const selectedSeatsCount = selectedSeats.length;
 
+    ////////// save slectedseatsindex into local storage /////////////
+
+    const selectedSeatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat))
+    localStorage.setItem('selectedSeatIndices', JSON.stringify(selectedSeatsIndex))
+
     count.innerText = selectedSeatsCount;
     total.innerText = selectedSeatsCount * ticketPrice;
+
+}
+/////////////////////////// save movie data in local storage////////////////////
+
+function setMovieData(movieIndex, moviePrice) {
+    localStorage.setItem('selectedMovieIndex', movieIndex);
+    localStorage.setItem('selectedMoviePrice', moviePrice)
+
+}
+
+//////////////////////////// get data saved in localstorage ///////////////
+
+function populateUi() {
+
+    /// get selectedmovieindex
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeatIndices'));
+
+    if (selectedSeats !== null && selectedSeats.length > 0) {
+        seats.forEach((seat, index) => {
+            if (selectedSeats.indexOf(index) > -1) {
+                seat.classList.add('selected')
+            }
+        })
+    }
+
+
+    const movieSelectedIndex = localStorage.getItem('selectedMovieIndex');
+    if (movieSelectedIndex !== null) {
+        movieSelect.selectedIndex = movieSelectedIndex;
+    }
+
 
 }
 
@@ -24,9 +62,11 @@ function updatedSelectedCount() {
 
 movieSelect.addEventListener('change', (e) => {
     ticketPrice = +e.target.value;
+
+    ///////////////// save movie data in localstorage ////////////////////////
+    setMovieData(+e.target.selectedIndex, +e.target.value)
     updatedSelectedCount();
 })
-
 
 
 container.addEventListener('click', (e) => {
@@ -37,3 +77,4 @@ container.addEventListener('click', (e) => {
         updatedSelectedCount();
     }
 })
+
