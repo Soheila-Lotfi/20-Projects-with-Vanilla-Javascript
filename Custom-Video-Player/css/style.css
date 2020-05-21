@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 *{
     box-sizing: border-box;
 }
@@ -5,22 +7,32 @@
 body{
     display:flex;
     flex-direction: column;
+    background-color: #666;
     align-items: center;
     justify-content: center;
-    /* max-width: 100vh; */
+    max-height: 100vh;
+    margin:0;
+    font-family: 'Questrial', sans-serif;
+     letter-spacing: 2px;
 
+}
+h1{
+    color: #fff;
 }
 
 .screen {
     width:70%;
-    background-color: black;
+    background-color: #000;
     border-radius: 10px 10px 0 0;
 }
 
 .controls{
     width: 70%;
-    background-color: gray;
+    background-color: #333;
+    color: #fff;
     display:flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 0 0 10px 10px;
     padding:10px;
 }
@@ -49,6 +61,7 @@ body{
   .controls .timestamp{
       font-weight: bold;
       margin-left:10px;
+      color: #fff;
 
   }
 @media(max-width:800px){
