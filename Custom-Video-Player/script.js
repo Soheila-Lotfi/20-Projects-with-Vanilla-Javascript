@@ -2,6 +2,7 @@
 // get the elements
 const video = document.getElementById('video')
 const playBtn = document.getElementById('play')
+const stopBtn = document.getElementById('stop')
 
 
 // toggle video status
@@ -21,9 +22,17 @@ function toggleVideoStatus() {
 
 }
 
+// stop the video
+
+function stopVideo() {
+    video.currentTime = '0';
+    video.pause();
+}
+
 
 
 // Event listener
 
 video.addEventListener('click', toggleVideoStatus);
 playBtn.addEventListener('click', toggleVideoStatus);
+stopBtn.addEventListener('click', stopVideo)
