@@ -4,6 +4,7 @@ const video = document.getElementById('video')
 const playBtn = document.getElementById('play')
 const stopBtn = document.getElementById('stop')
 const progress = document.getElementById('progress')
+const timestamp = document.getElementById('timestamp')
 
 
 // toggle video status
@@ -38,11 +39,36 @@ function setVideoProgress() {
     video.currentTime = (+progress.value * video.duration) / 100;
 }
 
+// update timestamp when time updates
+
+function updateTimestamp() {
+
+    // when time changes, we should update progress slider and also timestamp
+    progress.value = (video.currentTime * 100) / video.duration
+
+    //get minutes
+    let mins = Math.floor(video.currentTime / 60);
+
+    if (mins < 10) {
+        mins = `0${mins}`
+    }
+    // get seconds
+    // let secs = video.currentTime - mins * 60;
+    let secs = Math.floor(video.currentTime % 60);
+    if (secs < 10) {
+        secs = `0${secs}`
+    }
+
+    timestamp.innerText = `${mins}:${secs}`
+
+}
+
 
 
 // Event listener
 
 video.addEventListener('click', toggleVideoStatus);
+video.addEventListener('timeupdate', updateTimestamp);
 playBtn.addEventListener('click', toggleVideoStatus);
 stopBtn.addEventListener('click', stopVideo);
 progress.addEventListener('change', setVideoProgress);
