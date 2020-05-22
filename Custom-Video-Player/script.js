@@ -64,7 +64,6 @@ function updateTimestamp() {
 }
 
 
-
 // Event listener
 
 video.addEventListener('click', toggleVideoStatus);
