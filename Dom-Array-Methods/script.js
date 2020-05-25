@@ -1,6 +1,7 @@
 // get the elements
 const addUser = document.getElementById('add-user')
 const main = document.getElementById('main')
+const double = document.getElementById('double')
 
 // get the random users
 
@@ -18,7 +19,7 @@ async function getRandomUsers() {
 
     let newUser = {
         name: `${user.name.first} ${user.name.last}`,
-        money: `$${Math.floor(Math.random() * 10000000000)}`
+        money: Math.floor(Math.random() * 10000000000)
     }
     addData(newUser)
 }
@@ -43,10 +44,29 @@ function updateDom(providedUSer = users) {
     providedUSer.forEach(item => {
         const element = document.createElement('div')
         element.classList.add('person');
-        element.innerHTML = `<strong>${item.name}</strong> ${item.money}`;
+        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
         main.appendChild(element);
     })
 
-
 }
 
+// format money 
+
+function formatMoney(number) {
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+
+// double money
+
+function doubleMoney() {
+    users = users.map(item => {
+        return { ...item, money: item.money * 2 }
+    })
+    updateDom();
+}
+
+// event listener
+
+addUser.addEventListener('click', getRandomUsers)
+double.addEventListener('click', doubleMoney)
