@@ -4,6 +4,7 @@ const main = document.getElementById('main')
 const double = document.getElementById('double')
 const showMillionaries = document.getElementById('show-millionaires')
 const sort = document.getElementById('sort')
+const wealth = document.getElementById('calculate-wealth')
 
 // get the random users
 
@@ -84,9 +85,21 @@ function sortByRichest() {
     updateDom();
 }
 
+// calculate entire wealth
+
+function calculateEntireWealth() {
+    const total = users.reduce((total, user) => total + user.money, 0);
+    const element = document.createElement('h3');
+
+    element.innerHTML = `<strong>Total Wealth</strong>${formatMoney(total)}`
+    main.appendChild(element);
+}
+
+
 // event listener
 
 addUser.addEventListener('click', getRandomUsers)
 double.addEventListener('click', doubleMoney)
 showMillionaries.addEventListener('click', showOnlyMillionairs)
 sort.addEventListener('click', sortByRichest)
+wealth.addEventListener('click', calculateEntireWealth);
