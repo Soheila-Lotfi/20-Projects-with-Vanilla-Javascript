@@ -3,6 +3,7 @@ const addUser = document.getElementById('add-user')
 const main = document.getElementById('main')
 const double = document.getElementById('double')
 const showMillionaries = document.getElementById('show-millionaires')
+const sort = document.getElementById('sort')
 
 // get the random users
 
@@ -76,8 +77,16 @@ function showOnlyMillionairs() {
 }
 
 
+// sort by richest
+
+function sortByRichest() {
+    users.sort((a, b) => b.money - a.money)
+    updateDom();
+}
+
 // event listener
 
 addUser.addEventListener('click', getRandomUsers)
 double.addEventListener('click', doubleMoney)
 showMillionaries.addEventListener('click', showOnlyMillionairs)
+sort.addEventListener('click', sortByRichest)
