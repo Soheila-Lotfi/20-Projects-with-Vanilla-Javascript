@@ -2,6 +2,7 @@
 const addUser = document.getElementById('add-user')
 const main = document.getElementById('main')
 const double = document.getElementById('double')
+const showMillionaries = document.getElementById('show-millionaires')
 
 // get the random users
 
@@ -66,7 +67,17 @@ function doubleMoney() {
     updateDom();
 }
 
+
+// show only millionaires
+
+function showOnlyMillionairs() {
+    users = users.filter(user => user.money > 1000000000)
+    updateDom();
+}
+
+
 // event listener
 
 addUser.addEventListener('click', getRandomUsers)
 double.addEventListener('click', doubleMoney)
+showMillionaries.addEventListener('click', showOnlyMillionairs)
