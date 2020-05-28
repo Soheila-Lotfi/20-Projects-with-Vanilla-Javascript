@@ -15,6 +15,11 @@ body{
     margin:0;
 }
 
+body.show-nav{
+    /* 200px is the width of nav , it pushes everything on the body 200px to the right  */
+transform: translatex(200px);
+}
+
 /* style nav bar */
 
 nav{
@@ -29,6 +34,11 @@ nav{
     flex-direction: column;
     align-items:center; */
     transform: translateX(-100%);
+}
+
+nav.show-nav{
+    /* 200px is the width of nav */
+       transform:translateX(200px);
 }
 
 nav .logo{
@@ -109,7 +119,6 @@ button.sign-up{
 
 .container{
     padding: 20px;
-    /* ///////////////////////////// */
     margin:0 auto;
     max-width:100%;
     width:800px;
@@ -128,13 +137,16 @@ button.sign-up{
     display:none;
 }
 
+.modal-container.show-modal{
+    display:block;
+}
+
 .modal{
     background-color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* ///// */
     max-width:100%;
     width:400px;
     border-radius: 5px;
