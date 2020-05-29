@@ -1,0 +1,25 @@
+
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #1d2f2f;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    color:#fff;
+}
+
+.figure-container{
+
+    stroke: #fff;
+    fill: transparent;
+
+}
+
+
