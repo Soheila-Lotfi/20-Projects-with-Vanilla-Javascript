@@ -63,5 +63,36 @@ button{
     color:#fff;
 }
 
+.game-container{
+    position: relative;
+    width: 70%;
+    text-align: center;
+ 
+}
+
+.wrong-letters-container{
+    position: absolute;
+    right:0;
+    top:0;
+
+}
+
+.figure-part{
+    display:none;
+}
+
+
+.word{
+    display: flex;
+    position: absolute;
+    left:50%;
+
+}
+
+.letter{
+    border-bottom: 1px solid tomato;
+    margin-right: 7px;
+}
+
 
 
